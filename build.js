@@ -2,7 +2,7 @@ var Metalsmith  = require('metalsmith');
 var markdown    = require('metalsmith-markdown');
 var layouts     = require('metalsmith-layouts');
 var permalinks  = require('metalsmith-permalinks');
-const assets      = require('mrs-smith-assets');
+const assets    = require('metalsmith-assets');
 
 Metalsmith(__dirname)
 .metadata({
