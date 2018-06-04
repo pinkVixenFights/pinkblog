@@ -4,8 +4,17 @@
   "description": "",
   "private": true,
   "scripts": {
-    "start": "node server",
+    "css-deploy": "npm run css-build && npm run css-postcss",
+    "css-build": "node-sass _sass/main.scss css/main.css",
+    "css-postcss": "postcss --use autoprefixer --output css/main.css css/main.css",
+    "css-watch": "npm run css-build -- --watch",
+    "deploy": "npm run css-deploy && npm run js-build",
+    "js-build": "babel _javascript --out-dir lib",
+    "js-watch": "npm run js-build -- --watch",
+    "watch": "npm run css-watch | npm run js-watch",
+    
     "build": "node build",
+    "start": "node server",
     "test": "echo \"Error: no test specified\" && exit 0",
     "publish": "git subtree push --prefix=public/ blog master"
   },
@@ -24,12 +33,19 @@
     "express": "^4.16.3"
   },
   "devDependencies": {
+    "autoprefixer": "^8.6.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015-ie": "^6.7.0",
+    "bulma": "^0.7.1",
     "jstransformer-handlebars": "^1.1.0",
     "metalsmith": "^2.3.0",
     "metalsmith-assets": "^0.1.0",
     "metalsmith-inline-source": "^1.0.6",
     "metalsmith-layouts": "^2.1.0",
     "metalsmith-markdown": "^0.2.2",
-    "metalsmith-permalinks": "^0.5.0"
+    "metalsmith-permalinks": "^0.5.0",
+    "node-sass": "^4.9.0",
+    "postcss-cli": "^5.0.0"
   }
 }
