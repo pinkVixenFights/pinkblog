@@ -5,15 +5,14 @@
   "private": true,
   "scripts": {
     "css-deploy": "npm run css-build && npm run css-postcss",
-    "css-build": "node-sass _sass/main.scss css/main.css",
-    "css-postcss": "postcss --use autoprefixer --output css/main.css css/main.css",
+    "css-build": "node-sass _sass/main.scss assets/css/main.css",
+    "css-postcss": "postcss --use autoprefixer --use cssnano --no-map --output assets/css/main.css assets/css/main.css",
     "css-watch": "npm run css-build -- --watch",
     "deploy": "npm run css-deploy && npm run js-build",
     "js-build": "babel _javascript --out-dir lib",
     "js-watch": "npm run js-build -- --watch",
     "watch": "npm run css-watch | npm run js-watch",
-    
-    "build": "node build",
+    "build": "npm run css-deploy && node build",
     "start": "node server",
     "test": "echo \"Error: no test specified\" && exit 0",
     "publish": "git subtree push --prefix=public/ blog master"
@@ -38,6 +37,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-es2015-ie": "^6.7.0",
     "bulma": "^0.7.1",
+    "cssnano": "^3.10.0",
     "jstransformer-handlebars": "^1.1.0",
     "metalsmith": "^2.3.0",
     "metalsmith-assets": "^0.1.0",
